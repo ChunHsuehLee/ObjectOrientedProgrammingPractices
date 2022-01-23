@@ -98,22 +98,6 @@ On the IRL, you have one of each of the 3 different cars (_FastCar_, _SlowCar_, 
 2. horn
    - Has a horn that goes "beep beep"
 
----
-## Submission
-
-Python is preferred, but coding in another language will not hinder your acceptance. All further instructions are assuming python is used.
-
-All of the base features of any car should live in `base_car.py`. Each of the unique cars should live in `fast_car.py`, `slow_car.py`, and `fancy_car.py` respectively. There should be a `main` function that contains the actions described in __Problem Statement__. This function should be able to run on its own and should have the expected output based on the parameters.
-
-All code _must_ be tested in `/tests` dir (testability is viewed equally as functionality)
-
-Allowed packages: `attr`, `enum`, `pytest`, `typing`, along with any internal packages
-
-All of your code should be submitted in a .zip file. A README with all necessary installation and use instructions should exist, along with all necessary project files.
-
-Project should be able to be installed, ran, and tested by simply following the instructions in the given README.
-
----
 ### Example usage (doesn't have to follow this exact formatting)
 
 ```
