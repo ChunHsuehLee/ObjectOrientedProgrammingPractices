@@ -26,6 +26,6 @@ void Fancy_car::changeGear(string gearState){
     }
 }
 
-void horn(){
+void Fancy_car::horn(){
     cout << "beep beep" << endl;
 }

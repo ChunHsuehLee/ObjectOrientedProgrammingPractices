@@ -1,12 +1,44 @@
 #include <iostream>
+#include <vector>
+#include <fstream>
 #include <math.h>
-#include "Slow_car.hpp"
-#include "Fast_car.hpp"
-#include "Fancy_car.hpp"
+#include "../Slow_car.hpp"
+#include "../Fast_car.hpp"
+#include "../Fancy_car.hpp"
+
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
 using namespace std;
 
-int main(void){
+TEST_CASE( "Output State", "[Input command]" ){
+    ////////////////////// test case 1 ////////////////////////
+    Fast_car car_1 = Fast_car();
+    car_1.turnON();
+    car_1.gas(1);
+    car_1.drive(10);
+    car_1.brake(3);
+    car_1.turnOff();
+    ansStruct car_1_ans = car_1.showState();
+
+    ansStruct ground_truth_car_1 = {false, false, 0, 100, 100, 0};
+    REQUIRE(car_1_ans == ground_truth_car_1);
+    ////////////////////// end ////////////////////////
+
+    ////////////////////// test case 2 ////////////////////////
+    Fancy_car car2 = Fancy_car();
+    car2.headlights();
+    car2.turnON();
+    car2.changeGear("reverse");
+    car2.gas(1);
+    car2.drive(10);
+    ansStruct car2_ans = car2.showState();
+
+    ansStruct ground_truth_car2 = {1, 1, 5, 50, 50, -1};
+    REQUIRE(car2_ans == ground_truth_car2);
+    ////////////////////// end ////////////////////////
+
+    ////////////////////// test case 3 ////////////////////////
     Fast_car fast_car = Fast_car();
     Slow_car slow_car = Slow_car();
     Fancy_car fancy_car = Fancy_car();
@@ -71,5 +103,13 @@ int main(void){
     fancy_car.horn();
     fancy_car.horn();
 
-    return 0;
+    ansStruct ground_truth_slow = {false, false, 0, 1125, 1125, 0};
+    ansStruct ground_truth_fast = {true, true, 150, 15600, 15600, 1};
+    ansStruct ground_truth_fancy = {true, false, 100, 4665, 1335, -1};
+
+    REQUIRE(ans_slow == ground_truth_slow);
+    REQUIRE(ans_fast == ground_truth_fast);
+    REQUIRE(ans_fancy == ground_truth_fancy);
+
+    ////////////////////// end ////////////////////////
 }

@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <tuple>
+#include <string>
 #include "Average_car.hpp"
 
 using namespace std;
@@ -61,17 +63,18 @@ void Average_car::headlights(){
     lightState = !lightState;
 }
 
-void Average_car::showState(){
+// void Average_car::showState(){
+ansStruct Average_car::showState(){
+    // <engineState, lightState, curSpeed, odom, home_dist, gearString>
     cout << "Current car state: " << endl;
     string engineString = engineState ? "on." : "off.";
     cout << "Engine is " << engineString << endl;
     string headlightsString = lightState ? "on." : "off.";
     cout << "Headlights are " << headlightsString << endl;
-    cout << "Current Speed is " << getSpeed() << endl;
+    cout << "Current Speed is " << getSpeed() << " m/s" << endl;
     cout << "Odometer: " << odom << " m" << endl;
     cout << "Distance from home: " << abs(home_dist) << " m" << endl;
     string gearString;
-    // cout << "Gear " << currentGear << endl;
     switch(currentGear) {
         case 1 :
             gearString = "Drive"; 
@@ -86,7 +89,14 @@ void Average_car::showState(){
             gearString = "Invalid";
     }
     cout << "Gear state: " << gearString << endl;
-    cout << endl;   
+    cout << endl; 
+    ans.s_engineState = engineState;
+    ans.s_lightState = lightState;
+    ans.s_curSpeed = curSpeed;
+    ans.s_odom = odom;
+    ans.s_home_dist = abs(home_dist);
+    ans.s_currentGear = currentGear;
+    return ans;
 }
 float Average_car::getSpeed(){
     return curSpeed;
@@ -99,7 +109,6 @@ float Average_car::getAcc(){
     return acc;
 }
 void Average_car::setAcc(float times){
-    // cout << acc << " " << times << endl;
     acc *= times;
     return;
 }

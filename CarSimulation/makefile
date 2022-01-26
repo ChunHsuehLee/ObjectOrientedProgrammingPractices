@@ -23,5 +23,13 @@ Fancy_car.o: Fancy_car.cpp Fancy_car.hpp
 main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp -o main.o
 
+all: test_car
+
+test_car: test.o Average_car.o Slow_car.o Fast_car.o Fancy_car.o
+	$(CC) test.o Average_car.o Slow_car.o Fast_car.o Fancy_car.o -o test_car
+
+test.o: test/test.cpp 
+	$(CC) $(CFLAGS) test/test.cpp -o test.o
+
 clean:
 	rm -f *.o *.out *.exe
